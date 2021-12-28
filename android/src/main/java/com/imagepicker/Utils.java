@@ -405,6 +405,11 @@ public class Utils {
         map.putInt("width", dimensions[0]);
         map.putInt("height", dimensions[1]);
         map.putString("type", getMimeType(uri, context));
+        try {
+            map.putInt("orientation", Integer.parseInt(getOrientation(uri, context)));
+        } catch (Exception e) {
+            map.putInt("orientation", ExifInterface.ORIENTATION_NORMAL);
+        }
 
         if (options.includeBase64) {
             map.putString("base64", getBase64String(uri, context));
