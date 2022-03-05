@@ -392,6 +392,14 @@ public class Utils {
         String fileName = uri.getLastPathSegment();
         ImageMetadata imageMetadata = new ImageMetadata(uri, context);
         int[] dimensions = getImageDimensions(uri, context);
+        String orientation;
+
+        try {
+            orientation = getOrientation(uri, context);
+        } catch (Exception e) {
+            e.printStackTrace();
+            orientation = 'exception';
+        }
 
         WritableMap map = Arguments.createMap();
         map.putString("uri", uri.toString());
@@ -400,7 +408,7 @@ public class Utils {
         map.putString("type", getMimeTypeFromFileUri(uri));
         map.putInt("width", dimensions[0]);
         map.putInt("height", dimensions[1]);
-        map.putString("orientation", getOrientation(uri, context));
+        map.putString("orientation", orientation);
         map.putString("type", getMimeType(uri, context));
 
         if (options.includeBase64) {
