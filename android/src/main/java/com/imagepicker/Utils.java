@@ -400,6 +400,7 @@ public class Utils {
         map.putString("type", getMimeTypeFromFileUri(uri));
         map.putInt("width", dimensions[0]);
         map.putInt("height", dimensions[1]);
+        map.putInt("orientation", getOrientation(uri, context));
         map.putString("type", getMimeType(uri, context));
 
         if (options.includeBase64) {
