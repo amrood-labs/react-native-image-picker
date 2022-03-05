@@ -398,7 +398,7 @@ public class Utils {
             orientation = getOrientation(uri, context);
         } catch (Exception e) {
             e.printStackTrace();
-            orientation = 'exception';
+            orientation = "";
         }
 
         WritableMap map = Arguments.createMap();
